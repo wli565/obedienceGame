@@ -58,27 +58,13 @@ function Button({text,correctness}) {
     cursor: 'pointer',
   };
 
-  if (correctness) {
-    return (
-      <div>
-        <button
-          style={buttonStyle}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={() => addingScore()}
-        >
-          {text}
-        </button>
-      </div>
-    );
-  }
   return (
     <div>
       <button
         style={buttonStyle}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => reducingScore()}
+        onClick={() => correctness ? addingScore() : reducingScore()}
       >
         {text}
       </button>
@@ -87,8 +73,9 @@ function Button({text,correctness}) {
 }
 
 export default function DessertGame() {
+  console.log(mainTheme)
   return (
-    <div style={{mainTheme}}>
+    <div style={mainTheme}>
       <p id="scoreDisplay">Testing your obedience</p>
       <Button 
         text = "Click"
@@ -101,4 +88,3 @@ export default function DessertGame() {
     </div>
   )
 }
-
